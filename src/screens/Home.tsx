@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Text } from "react-native-elements";
 import { CounterContext } from "../providers/CounterContext";
 
-export default () => {
+export default ({navigation} : any) => {
     const { counter, setCounter } = useContext(CounterContext);
 
     const handleClickCounter = (type: 'minus' | 'plus') => {
@@ -18,7 +18,7 @@ export default () => {
         <View style={styles.container}>
             <Text h4 style={styles.header}>Home</Text>
             <View style={styles.counterContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => handleClickCounter('minus')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Auth')}>
                     <Text style={styles.buttonText}>-</Text>
                 </TouchableOpacity>
                 <Text style={styles.counterText}>{counter}</Text>

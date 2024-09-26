@@ -3,16 +3,20 @@ import { Text, View, SafeAreaView, TextInput, StyleSheet, TouchableOpacity } fro
 import { useContext } from 'react';
 import { useAuth } from '../providers/AuthContext';
 import { AuthContext } from '../providers/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
-export default () => {
+export default ({navigation}: any) => {
 
     const { login } = useAuth();
 
     const { username, setUsername } = useContext(AuthContext);
     const { password, setPassword } = useContext(AuthContext);
+    const { isAuthenticated } = useContext(AuthContext);
 
-    const handleLogin = () => {
-        login(username, password);
+    const handleLogin = async () => {
+        await login(username, password);
+
+        navigation.navigate('Home');
     }
 
     return (
@@ -24,6 +28,7 @@ export default () => {
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
+                <Text>Authentification : {isAuthenticated}</Text>
             </View>
         </SafeAreaView>        
     )
