@@ -28,7 +28,6 @@ export default ({navigation}: any) => {
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
-                <Text>Authentification : {isAuthenticated}</Text>
             </View>
         </SafeAreaView>        
     )
