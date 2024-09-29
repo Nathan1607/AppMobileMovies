@@ -4,12 +4,32 @@ import Search from '../screens/Search';
 import Wishlist from '../screens/Wishlist';
 import Profile from '../screens/Profile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faHeart, faHome, faP, faPeopleArrows, faPerson, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Tab = createBottomTabNavigator();
 
 const AppRoutes = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarIcon: ({ color, size}) => {
+        let iconName: IconDefinition = faHome;
+
+        if( route.name === 'Home') {
+          iconName = faHome;
+        } else if (route.name === 'Search') {
+          iconName = faSearch;
+        } else if (route.name === 'Wishlist') {
+          iconName = faHeart;
+        } else if (route.name === 'Profile') {
+          iconName = faPerson;
+        }
+
+        return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
+      },
+    })}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Wishlist" component={Wishlist} />
