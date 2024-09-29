@@ -1,14 +1,15 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const AppRoutes = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+    </Tab.Navigator>
   );
 };
 
