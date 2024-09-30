@@ -1,16 +1,31 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
 import { Text } from "react-native-elements";
+import { SafeAreaView } from "react-native-safe-area-context";
+import BarCategory from "../components/BarCategory";
 
-
-export default ({navigation} : any) => {
+export default () => {
     
     return (
-        <View>
-            <Text>
-                Home
-            </Text>
-        </View>
+        <SafeAreaView>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <TouchableOpacity>
+                    <Text>All</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Romance</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Sport</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Kids</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Horror</Text>
+                </TouchableOpacity>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
