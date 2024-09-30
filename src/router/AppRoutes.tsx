@@ -6,7 +6,7 @@ import Profile from '../screens/Profile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHeart, faHome, faPerson, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faHome, faPerson, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         } else if (route.name === 'Wishlist') {
           iconName = faHeart;
         } else if (route.name === 'Profile') {
-          iconName = faPerson;
+          iconName = faUser;
         }
 
         return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
