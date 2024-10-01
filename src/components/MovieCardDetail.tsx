@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-interface MovieCardProps {
+interface MovieCardDetailProps {
     title: string;
     imageUrl: string;
     rating: number;
     onPress: () => void;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({title, imageUrl, rating, onPress}) => {
+const MovieCardDetail: React.FC<MovieCardDetailProps> = ({title, imageUrl, rating, onPress}) => {
     return (
         <TouchableOpacity style={styles.card} onPress={onPress}>
       <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     },
   });
   
-  export default MovieCard;
+  export default MovieCardDetail;
