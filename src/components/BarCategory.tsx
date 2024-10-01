@@ -14,7 +14,6 @@ export default () => {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={styles.scrollViewContent}
-                    contentInset={{ left: 10, right: 10 }}
                 >
                     <TouchableOpacity
                         style={[
@@ -98,7 +97,7 @@ export default () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 10,
+        paddingVertical: 20,
         alignItems: 'center',
     },
     scrollViewWrapper: {
@@ -111,8 +110,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 0,
-        paddingLeft: 0
+        paddingHorizontal: 5,
+        paddingLeft: 0,
     },
     button: {
         borderRadius: 20,
