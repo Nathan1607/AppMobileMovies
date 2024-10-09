@@ -39,13 +39,15 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 50,
+        marginBottom: 100,
+        marginTop: 50,
       },
     input: {
         backgroundColor: 'white',
         borderColor: 'black',
         borderWidth: 1,
         padding: 10,
+        marginBottom: 50,
         marginVertical: 10,
       },
     button: {
