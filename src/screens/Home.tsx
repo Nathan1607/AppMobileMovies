@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
 import { Text } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,6 +8,7 @@ import Carousel from "react-native-snap-carousel";
 
 export default () => {
     
+      
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
