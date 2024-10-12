@@ -4,7 +4,7 @@ import { Text } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BarCategory from "../components/BarCategory";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
+import Carousel from "react-native-snap-carousel";
 
 export default () => {
     
