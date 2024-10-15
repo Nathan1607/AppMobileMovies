@@ -7,13 +7,13 @@ import {
   View,
 } from 'react-native';
 import React, {useContext, useEffect} from 'react';
-import {Text} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // import Carousel from 'react-native-snap-carousel';
 
 export default () => {
+    
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
   const [movies, setMovies] = React.useState([]);
@@ -60,14 +60,6 @@ export default () => {
       <SafeAreaView style={styles.container}>
         <View>
           <BarCategory />
-          {/* {movies.length > 0 && (
-             <Carousel
-               data={movies}
-               renderItem={renderItem}
-               sliderWidth={Dimensions.get('window').width}
-               itemWidth={200}
-            />
-          )} */}
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>
