@@ -15,10 +15,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-
-/*
-Création d'un dossier Router
-Créer un fichier index.tsx dans le dossier Router
-Créer plein de fichier pour chaque Stack de Route
-Voir ce site : https://reactnavigation.org/docs/auth-flow
-*/
