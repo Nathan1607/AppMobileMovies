@@ -1,22 +1,20 @@
 import {
-  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-// import Carousel from 'react-native-snap-carousel';
 
 export default () => {
     
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
-  const [movies, setMovies] = React.useState([]);
+  
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -61,6 +59,13 @@ export default () => {
         <View>
           <BarCategory />
         </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {movies.map((movie, index) => (
+            <View key={index} style={styles.carouselItem}>
+              {renderItem({item: movie})}
+            </View>
+          ))}
+        </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
   carouselItem: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: 10,
   },
   posterImage: {
     width: 300,
