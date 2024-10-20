@@ -1,7 +1,9 @@
 import {
+  Dimensions,
   Image,
   ScrollView,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -48,7 +50,7 @@ export default () => {
     const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
     return (
       <View style={styles.carouselItem}>
-        <Image source={{uri: posterUrl}} style={styles.posterImage} />
+        <Image source={{uri: posterUrl}} style={styles.posterImage} resizeMode="contain" />
       </View>
     );
   };
@@ -56,10 +58,13 @@ export default () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
-        <View>
+        {/* Barre de catégorie en haut */}
+        <View style={styles.barCategoryContainer}>
           <BarCategory />
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+
+        {/* Carrousel en dessous */}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.carouselContainer}>
           {movies.map((movie, index) => (
             <View key={index} style={styles.carouselItem}>
               {renderItem({item: movie})}
@@ -76,13 +81,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
   },
+  barCategoryContainer: {
+    marginTop: 20,
+    zIndex: 1,
+  },
+  carouselContainer: {
+    top: -230,
+  },
   carouselItem: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 10,
   },
   posterImage: {
-    width: 300,
+    width: 450,
     height: 450,
     borderRadius: 10,
   },
