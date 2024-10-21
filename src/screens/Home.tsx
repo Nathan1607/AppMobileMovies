@@ -86,15 +86,16 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   carouselContainer: {
-    top: -230,
+    top: -275,
   },
   carouselItem: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   posterImage: {
-    width: 450,
-    height: 450,
+    width: 670,
+    height: 350,
     borderRadius: 10,
+    marginLeft: -100
   },
 });
