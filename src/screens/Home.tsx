@@ -1,9 +1,6 @@
 import {
-  Dimensions,
   Image,
-  ScrollView,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -16,10 +13,10 @@ export default () => {
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
   
-  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovie = async () => {
       try {
         const response = await fetch(
           'https://api.themoviedb.org/3/movie/popular?page=1',
@@ -33,27 +30,15 @@ export default () => {
         );
         if (response.ok) {
           const data = await response.json();
-          setMovies(data.results.slice(0, 4));
+          setMovie(data.results[0]); // On ne prend que le premier film
         }
       } catch (error) {
         console.error('Error:', error);
       }
     };
 
-    fetchMovies();
+    fetchMovie();
   }, []);
-
-  const renderItem = ({item}: {item: any}) => {
-    if (!item.poster_path) {
-      return null;
-    }
-    const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-    return (
-      <View style={styles.carouselItem}>
-        <Image source={{uri: posterUrl}} style={styles.posterImage} resizeMode="contain" />
-      </View>
-    );
-  };
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
@@ -63,14 +48,16 @@ export default () => {
           <BarCategory />
         </View>
 
-        {/* Carrousel en dessous */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.carouselContainer}>
-          {movies.map((movie, index) => (
-            <View key={index} style={styles.carouselItem}>
-              {renderItem({item: movie})}
-            </View>
-          ))}
-        </ScrollView>
+        {/* Image du film qu'il faudra modifier pour un carousel */}
+        <View style={styles.imageContainer}>
+          {movie && movie.poster_path && (
+            <Image 
+              source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} 
+              style={styles.posterImage}
+              resizeMode="contain"
+            />
+          )}
+        </View>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -85,17 +72,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     zIndex: 1,
   },
-  carouselContainer: {
-    top: -275,
-  },
-  carouselItem: {
+  imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1, // Pour occuper tout l'espace possible
   },
   posterImage: {
-    width: 670,
-    height: 350,
+    width: 375,
+    height: 550,
     borderRadius: 10,
-    marginLeft: -100
   },
 });
