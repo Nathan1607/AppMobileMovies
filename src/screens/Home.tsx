@@ -13,7 +13,11 @@ export default () => {
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
   
-  const [movie, setMovie] = useState(null);
+  interface Movie {
+    poster_path: string;
+  }
+
+  const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -30,7 +34,7 @@ export default () => {
         );
         if (response.ok) {
           const data = await response.json();
-          setMovie(data.results[0]); // On ne prend que le premier film
+          setMovie(data.results[0]);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1, // Pour occuper tout l'espace possible
+    flex: 1,
   },
   posterImage: {
     width: 375,
