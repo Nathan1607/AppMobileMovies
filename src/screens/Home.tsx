@@ -52,16 +52,7 @@ export default () => {
           <BarCategory />
         </View>
 
-        {/* Image du film qu'il faudra modifier pour un carousel */}
-        <View style={styles.imageContainer}>
-          {movie && movie.poster_path && (
-            <Image 
-              source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} 
-              style={styles.posterImage}
-              resizeMode="contain"
-            />
-          )}
-        </View>
+        <View style={styles.grayBackground} />
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -76,14 +67,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     zIndex: 1,
   },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  posterImage: {
-    width: 375,
-    height: 550,
-    borderRadius: 10,
+  grayBackground: {
+    top: -100,
+    backgroundColor: '#808080',
+    height: 350, 
+    width: '100%',
   },
 });
