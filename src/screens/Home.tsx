@@ -1,4 +1,5 @@
 import {
+  GestureResponderEvent,
   Image,
   StyleSheet,
   View,
@@ -7,6 +8,8 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import Button from '../components/Button';
+import { faHeart, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default () => {
     
@@ -47,12 +50,29 @@ export default () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
-        {/* Barre de catégorie en haut */}
         <View style={styles.barCategoryContainer}>
           <BarCategory />
         </View>
 
         <View style={styles.grayBackground} />
+
+        <View style={styles.buttonContainer}>
+          <Button
+            text="Wishlist"
+            iconName={faHeart}
+            color="#333"
+            onPress={function (event: GestureResponderEvent): void {
+              throw new Error('Function not implemented.');
+            } }   
+          />
+          <Button
+            text="Details"
+            color="#FFC107" 
+            onPress={function (event: GestureResponderEvent): void {
+              throw new Error('Function not implemented.');
+            } }          
+            />
+        </View>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -72,5 +92,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#808080',
     height: 350, 
     width: '100%',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingHorizontal: 20,
+    marginTop: -150,
+    width: '100%',
+    height: 50,
   },
 });
