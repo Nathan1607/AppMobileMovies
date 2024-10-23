@@ -73,6 +73,8 @@ export default () => {
             } }          
             />
         </View>
+
+        {/* Pour réaliser le Marvel Studios  -> faire un scrollview horizontal d'une réplication de view */}
       </SafeAreaView>
     </GestureHandlerRootView>
   );
