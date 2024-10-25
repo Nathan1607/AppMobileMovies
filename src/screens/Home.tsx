@@ -76,8 +76,8 @@ export default () => {
         </View>
         
         <View>
-          <Text style={styles.textMarvel}>Marvel Studios</Text>
-          <Text style={styles.linkMarvel}>See more</Text>
+          <Text style={styles.titleCategorie}>Marvel Studios</Text>
+          <Text style={styles.link}>See more</Text>
 
           <ScrollView
             horizontal
@@ -94,8 +94,28 @@ export default () => {
                 ]}
               />
             ))}
-              {/* <View style={{ width: 20 }} /> */}
+          </ScrollView>
+        </View>
 
+        <View>
+          <Text style={styles.titleCategorie}>Best Movies</Text>
+          <Text style={styles.link}>See more</Text>
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.carouselContainer}
+          >
+            {movies.map((movie, index) => (
+              <Image
+                key={index}
+                source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                style={[
+                  styles.posterImage,
+                  index === movies.length - 1 ? { marginRight: 30 } : {},
+                ]}
+              />
+            ))}
           </ScrollView>
         </View>
       </SafeAreaView>
@@ -126,7 +146,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
   },
-  textMarvel : {
+  titleCategorie : {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
@@ -134,7 +154,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 20,
   },
-  linkMarvel: {
+  link: {
     color: 'yellow',
     fontSize: 15,
     fontWeight: 'bold',
