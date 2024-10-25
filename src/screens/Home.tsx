@@ -10,7 +10,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/Button';
-import { faHeart, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 export default () => {
     
@@ -51,6 +51,7 @@ export default () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.barCategoryContainer}>
           <BarCategory />
         </View>
@@ -118,6 +119,7 @@ export default () => {
             ))}
           </ScrollView>
         </View>
+        </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
@@ -127,6 +129,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingBottom: 20,
   },
   barCategoryContainer: {
     marginTop: 20,
