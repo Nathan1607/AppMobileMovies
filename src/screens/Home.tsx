@@ -21,7 +21,12 @@ export default () => {
     poster_path: string;
   }
 
+  interface TvList {
+    poster_path: string;
+  }
+
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [tvLists, setTvLists] = useState<TvList[]>([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -45,7 +50,29 @@ export default () => {
       }
     };
 
+    const fetchTvList = async() => {
+      try {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/tv/popular?page=1',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + token,
+            },
+          },
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setTvLists(data.results.slice(0, 10));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
     fetchMovies();
+    fetchTvList();
   }, []);
 
   return (
@@ -77,7 +104,7 @@ export default () => {
         </View>
         
         <View>
-          <Text style={styles.titleCategorie}>Marvel Studios</Text>
+          <Text style={styles.titleCategorie}>Best TV</Text>
           <Text style={styles.link}>See more</Text>
 
           <ScrollView
@@ -85,13 +112,13 @@ export default () => {
             showsHorizontalScrollIndicator={false}
             style={styles.carouselContainer}
           >
-            {movies.map((movie, index) => (
+            {tvLists.map((tvList, index) => (
               <Image
                 key={index}
-                source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
+                source={{ uri: `https://image.tmdb.org/t/p/w500${tvList.poster_path}` }}
                 style={[
                   styles.posterImage,
-                  index === movies.length - 1 ? { marginRight: 30 } : {},
+                  index === tvLists.length - 1 ? { marginRight: 30 } : {},
                 ]}
               />
             ))}
