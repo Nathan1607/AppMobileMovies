@@ -6,6 +6,7 @@ interface MovieCardDetailProps {
   imageUrl: string;
   rating: number;
   onPress: () => void;
+  style?: object;
 }
 
 const MovieCardDetail: React.FC<MovieCardDetailProps> = ({
@@ -13,9 +14,10 @@ const MovieCardDetail: React.FC<MovieCardDetailProps> = ({
   imageUrl,
   rating,
   onPress,
+  style
 }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       <Image source={{ uri: imageUrl }} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>

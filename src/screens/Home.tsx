@@ -145,6 +145,7 @@ export default () => {
               imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               rating={movie.vote_average}
               onPress={() => console.log(`${movie.title} selected`)}
+              style={[index === tvLists.length - 1 ? { marginRight: 30 } : null]}
             />
             ))}
           </ScrollView>
