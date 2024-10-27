@@ -123,7 +123,8 @@ export default () => {
               title={tvList.name}
               imageUrl={`https://image.tmdb.org/t/p/w500${tvList.poster_path}`}
               onPress={() => console.log(`${tvList.name} selected`)}
-            />
+              style={[index === tvLists.length - 1 ? { marginRight: 30 } : null]}
+              />
             ))}
           </ScrollView>
         </View>
@@ -205,6 +206,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 180,
     borderRadius: 10,
-    marginRight: 15,
+    marginRight: 20,
   },
 });

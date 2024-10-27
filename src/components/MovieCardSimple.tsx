@@ -5,15 +5,17 @@ interface MovieCardSimpleProps {
   title: string;
   imageUrl: string;
   onPress: () => void;
+  style?: object;
 }
 
 const MovieCardSimple: React.FC<MovieCardSimpleProps> = ({
   title,
   imageUrl,
   onPress,
+  style,
 }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       <Image source={{uri: imageUrl}} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
