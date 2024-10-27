@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 interface MovieCardDetailProps {
   title: string;
@@ -16,11 +16,11 @@ const MovieCardDetail: React.FC<MovieCardDetailProps> = ({
 }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Image source={{uri: imageUrl}} style={styles.image} />
+      <Image source={{ uri: imageUrl }} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
-        {rating && <Text style={styles.rating}>⭐ {rating}</Text>}
-      </View>
+        <Text style={styles.rating}>⭐ {rating.toFixed(1)}</Text>
+        </View>
     </TouchableOpacity>
   );
 };
@@ -38,16 +38,25 @@ const styles = StyleSheet.create({
     height: 200,
   },
   info: {
-    padding: 10,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   title: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 8,
     fontWeight: 'bold',
   },
   rating: {
     color: '#FFD700',
-    marginTop: 5,
+    fontSize: 14,
+    marginLeft: 5,
   },
 });
 

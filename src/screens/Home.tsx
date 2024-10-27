@@ -12,6 +12,7 @@ import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/Button';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
+import MovieCardDetail from '../components/MovieCardDetail';
 
 export default () => {
     
@@ -19,6 +20,8 @@ export default () => {
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
 
   interface Movie {
+    vote_average: number;
+    title: string;
     poster_path: string;
   }
 
@@ -135,14 +138,13 @@ export default () => {
             style={styles.carouselContainer}
           >
             {movies.map((movie, index) => (
-              <Image
-                key={index}
-                source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
-                style={[
-                  styles.posterImage,
-                  index === movies.length - 1 ? { marginRight: 30 } : {},
-                ]}
-              />
+              <MovieCardDetail
+              key={index}
+              title={movie.title}
+              imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              rating={movie.vote_average}
+              onPress={() => console.log(`${movie.title} selected`)}
+            />
             ))}
           </ScrollView>
         </View>
