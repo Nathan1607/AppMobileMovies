@@ -35,13 +35,6 @@ const News: React.FC<NewsProps> = ({
 };
 
 const styles = StyleSheet.create({
-  card: {
-    width: 150,
-    margin: 10,
-    borderRadius: 8,
-    overflow: 'hidden',
-    backgroundColor: '#1c1c1c',
-  },
   image: {
     width: '100%',
     height: 200,
