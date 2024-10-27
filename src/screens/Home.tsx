@@ -150,6 +150,10 @@ export default () => {
             ))}
           </ScrollView>
         </View>
+        <View>
+            {/* New composant for NEWS */}
+        </View>
+
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
