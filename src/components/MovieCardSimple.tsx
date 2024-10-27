@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     overflow: 'hidden',
-    backgroundColor: '#1c1c1c',
+    height: 250,
   },
   image: {
     width: '100%',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });

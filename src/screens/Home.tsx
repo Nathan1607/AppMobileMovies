@@ -11,6 +11,7 @@ import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/Button';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import MovieCardSimple from '../components/MovieCardSimple';
 
 export default () => {
     
@@ -22,6 +23,7 @@ export default () => {
   }
 
   interface TvList {
+    name: string;
     poster_path: string;
   }
 
@@ -113,14 +115,12 @@ export default () => {
             style={styles.carouselContainer}
           >
             {tvLists.map((tvList, index) => (
-              <Image
-                key={index}
-                source={{ uri: `https://image.tmdb.org/t/p/w500${tvList.poster_path}` }}
-                style={[
-                  styles.posterImage,
-                  index === tvLists.length - 1 ? { marginRight: 30 } : {},
-                ]}
-              />
+              <MovieCardSimple
+              key={index}
+              title={tvList.name}
+              imageUrl={`https://image.tmdb.org/t/p/w500${tvList.poster_path}`}
+              onPress={() => console.log(`${tvList.name} selected`)}
+            />
             ))}
           </ScrollView>
         </View>
