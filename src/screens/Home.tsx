@@ -166,8 +166,10 @@ export default () => {
               text="Check Details"
               color="#FFC107"
               fontSize={18}
-              width={200}
+              width="85%"
               textColor="#fff"
+              marginLeft={30}
+              marginTop={15}
               onPress={function (event: GestureResponderEvent): void {
                 throw new Error('Function not implemented.');
               }}
@@ -233,7 +235,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   imageNews: {
-    width: '100%',
+    width: '95%',
     height: 120,
     marginTop: 20,
     marginLeft: 30,

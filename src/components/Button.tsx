@@ -1,3 +1,5 @@
+// Button.tsx
+
 import {
   GestureResponderEvent,
   StyleSheet,
@@ -17,6 +19,8 @@ interface ButtonProps {
   fontSize?: number;
   textColor?: string;
   width?: number | string;
+  marginLeft?: number;
+  marginTop?: number;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -27,11 +31,13 @@ const Button: React.FC<ButtonProps> = ({
   fontSize = 16,
   textColor = '#fff',
   width,
+  marginLeft,
+  marginTop
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor: color}]}
-      onPress={onPress}>
+    style={[styles.button, { backgroundColor: color, width: width as number | undefined, marginLeft, marginTop }]}
+    onPress={onPress}>
       <View style={styles.buttonContent}>
         {iconName && (
           <FontAwesomeIcon
@@ -41,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({
             style={styles.icon}
           />
         )}
-        <Text style={[styles.text, { fontSize, color: textColor }]}>{text}</Text>
+        <Text style={[styles.text, {fontSize, color: textColor}]}>{text}</Text>
       </View>
     </TouchableOpacity>
   );
