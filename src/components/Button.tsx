@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext} from 'react';
+import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
@@ -14,9 +14,20 @@ interface ButtonProps {
   iconName?: IconProp;
   color: string;
   onPress: (event: GestureResponderEvent) => void;
+  fontSize?: number;
+  textColor?: string;
+  width?: number | string;
 }
 
-const Button: React.FC<ButtonProps> = ({text, iconName, color, onPress}) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  iconName,
+  color,
+  onPress,
+  fontSize = 16,
+  textColor = '#fff',
+  width,
+}) => {
   return (
     <TouchableOpacity
       style={[styles.button, {backgroundColor: color}]}
@@ -30,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({text, iconName, color, onPress}) => {
             style={styles.icon}
           />
         )}
-        <Text style={styles.text}>{text}</Text>
+        <Text style={[styles.text, { fontSize, color: textColor }]}>{text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -50,8 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#fff',
-    fontSize: 16,
     fontWeight: 'bold',
   },
   icon: {

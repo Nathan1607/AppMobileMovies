@@ -10,12 +10,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/Button';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
 
 export default () => {
-    
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
 
@@ -55,7 +54,7 @@ export default () => {
       }
     };
 
-    const fetchTvList = async() => {
+    const fetchTvList = async () => {
       try {
         const response = await fetch(
           'https://api.themoviedb.org/3/tv/popular?page=1',
@@ -84,76 +83,96 @@ export default () => {
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.barCategoryContainer}>
-          <BarCategory />
-        </View>
+          <View style={styles.barCategoryContainer}>
+            <BarCategory />
+          </View>
 
-        <View style={styles.grayBackground} />
+          <View style={styles.grayBackground} />
 
-        <View style={styles.buttonContainer}>
-          <Button
-            text="Wishlist"
-            iconName={faHeart}
-            color="#333"
-            onPress={function (event: GestureResponderEvent): void {
-              throw new Error('Function not implemented.');
-            }}   
-          />
-          <Button
-            text="Details"
-            color="#FFC107" 
-            onPress={function (event: GestureResponderEvent): void {
-              throw new Error('Function not implemented.');
-            }}          
+          <View style={styles.buttonContainer}>
+            <Button
+              text="Wishlist"
+              iconName={faHeart}
+              color="#333"
+              onPress={function (event: GestureResponderEvent): void {
+                throw new Error('Function not implemented.');
+              }}
             />
-        </View>
-        
-        <View>
-          <Text style={styles.titleCategorie}>Best TV</Text>
-          <Text style={styles.link}>See more</Text>
-
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.carouselContainer}
-          >
-            {tvLists.map((tvList, index) => (
-              <MovieCardSimple
-              key={index}
-              title={tvList.name}
-              imageUrl={`https://image.tmdb.org/t/p/w500${tvList.poster_path}`}
-              onPress={() => console.log(`${tvList.name} selected`)}
-              style={[index === tvLists.length - 1 ? { marginRight: 30 } : null]}
-              />
-            ))}
-          </ScrollView>
-        </View>
-
-        <View>
-          <Text style={styles.titleCategorie}>Best Movies</Text>
-          <Text style={styles.link}>See more</Text>
-
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.carouselContainer}
-          >
-            {movies.map((movie, index) => (
-              <MovieCardDetail
-              key={index}
-              title={movie.title}
-              imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              rating={movie.vote_average}
-              onPress={() => console.log(`${movie.title} selected`)}
-              style={[index === tvLists.length - 1 ? { marginRight: 30 } : null]}
+            <Button
+              text="Details"
+              color="#FFC107"
+              onPress={function (event: GestureResponderEvent): void {
+                throw new Error('Function not implemented.');
+              }}
             />
-            ))}
-          </ScrollView>
-        </View>
-        <View>
-            {/* New composant for NEWS */}
-        </View>
+          </View>
 
+          <View>
+            <Text style={styles.titleCategorie}>Best TV</Text>
+            <Text style={styles.link}>See more</Text>
+
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.carouselContainer}>
+              {tvLists.map((tvList, index) => (
+                <MovieCardSimple
+                  key={index}
+                  title={tvList.name}
+                  imageUrl={`https://image.tmdb.org/t/p/w500${tvList.poster_path}`}
+                  onPress={() => console.log(`${tvList.name} selected`)}
+                  style={[
+                    index === tvLists.length - 1 ? {marginRight: 30} : null,
+                  ]}
+                />
+              ))}
+            </ScrollView>
+          </View>
+
+          <View>
+            <Text style={styles.titleCategorie}>Best Movies</Text>
+            <Text style={styles.link}>See more</Text>
+
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.carouselContainer}>
+              {movies.map((movie, index) => (
+                <MovieCardDetail
+                  key={index}
+                  title={movie.title}
+                  imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  rating={movie.vote_average}
+                  onPress={() => console.log(`${movie.title} selected`)}
+                  style={[
+                    index === tvLists.length - 1 ? {marginRight: 30} : null,
+                  ]}
+                />
+              ))}
+            </ScrollView>
+          </View>
+          <View>
+            <Image
+              source={require('../images/blackfriday.jpg')}
+              style={styles.imageNews}
+              resizeMode="cover"
+            />
+            <Text style={styles.textBlackFriday}>Black friday is here !</Text>
+            <Text style={styles.textBlackFridayDescription}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+              cumque assumenda! Nesciunt accusantium.
+            </Text>
+            <Button
+              text="Check Details"
+              color="#FFC107"
+              fontSize={18}
+              width={200}
+              textColor="#fff"
+              onPress={function (event: GestureResponderEvent): void {
+                throw new Error('Function not implemented.');
+              }}
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     </GestureHandlerRootView>
@@ -176,7 +195,7 @@ const styles = StyleSheet.create({
   grayBackground: {
     top: -100,
     backgroundColor: '#808080',
-    height: 350, 
+    height: 350,
     width: '100%',
   },
   buttonContainer: {
@@ -187,13 +206,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
   },
-  titleCategorie : {
+  titleCategorie: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'left',
     marginTop: 30,
-    marginLeft: 20,
+    marginLeft: 30,
   },
   link: {
     color: 'yellow',
@@ -212,5 +231,26 @@ const styles = StyleSheet.create({
     height: 180,
     borderRadius: 10,
     marginRight: 20,
+  },
+  imageNews: {
+    width: '100%',
+    height: 120,
+    marginTop: 20,
+    marginLeft: 30,
+  },
+  textBlackFriday: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginTop: 10,
+    marginLeft: 30,
+  },
+  textBlackFridayDescription: {
+    color: 'white',
+    fontSize: 14,
+    textAlign: 'left',
+    marginTop: 10,
+    marginLeft: 30,
   },
 });
