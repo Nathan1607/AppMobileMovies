@@ -3,7 +3,6 @@ import { Text, View, SafeAreaView, TextInput, StyleSheet, TouchableOpacity } fro
 import { useContext } from 'react';
 import { useAuth } from '../providers/AuthContext';
 import { AuthContext } from '../providers/AuthContext';
-import { useNavigation } from '@react-navigation/native';
 
 export default ({navigation}: any) => {
 
@@ -15,8 +14,6 @@ export default ({navigation}: any) => {
 
     const handleLogin = async () => {
         await login(username, password);
-
-        navigation.navigate('Home');
     }
 
     return (
