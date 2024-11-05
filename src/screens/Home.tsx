@@ -87,7 +87,8 @@ export default () => {
             <BarCategory />
           </View>
 
-          <View style={styles.grayBackground} />
+          {/* <View style={styles.grayBackground} /> */}
+          
 
           <View style={styles.buttonContainer}>
             <Button
@@ -194,12 +195,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     zIndex: 1,
   },
-  grayBackground: {
-    top: -100,
-    backgroundColor: '#808080',
-    height: 350,
-    width: '100%',
-  },
+  // grayBackground: {
+  //   top: -100,
+  //   backgroundColor: '#808080',
+  //   height: 350,
+  //   width: '100%',
+  // },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
