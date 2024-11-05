@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -14,6 +15,8 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
 
+const {width: screenWidth} = Dimensions.get('window');
+ 
 export default () => {
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
@@ -87,8 +90,22 @@ export default () => {
             <BarCategory />
           </View>
 
-          {/* <View style={styles.grayBackground} /> */}
-          
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            style={styles.carouselContainerHeader}>
+            {movies.map((movie, index) => (
+              <Image
+                key={index}
+                source={{
+                    uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                }}
+                style={styles.headerCarouselImage}
+                resizeMode="contain"
+              />
+            ))}
+          </ScrollView>
 
           <View style={styles.buttonContainer}>
             <Button
@@ -108,7 +125,7 @@ export default () => {
             />
           </View>
 
-          <View>
+          <View style={styles.spaceView}>
             <Text style={styles.titleCategorie}>Best TV</Text>
             <Text style={styles.link}>See more</Text>
 
@@ -192,15 +209,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   barCategoryContainer: {
-    marginTop: 20,
+    position: 'absolute',
+    width: '100%',
     zIndex: 1,
   },
-  // grayBackground: {
-  //   top: -100,
-  //   backgroundColor: '#808080',
-  //   height: 350,
-  //   width: '100%',
-  // },
+ grayBackground: {
+   top: -100,
+   backgroundColor: '#808080',
+   height: 350,
+   width: '100%',
+ },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -226,7 +244,6 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   carouselContainer: {
-    marginTop: 10,
     paddingHorizontal: 20,
   },
   posterImage: {
@@ -256,4 +273,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 30,
   },
+  headerCarouselImage: {
+    width: screenWidth,
+    height: 700,
+  },
+  spaceView: {
+    marginTop: 130,
+  },
+  carouselContainerHeader:{
+    left: 0,
+  }
+  
 });
