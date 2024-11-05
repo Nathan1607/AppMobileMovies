@@ -125,7 +125,7 @@ export default () => {
             />
           </View>
 
-          <View style={styles.spaceView}>
+          <View>
             <Text style={styles.titleCategorie}>Best TV</Text>
             <Text style={styles.link}>See more</Text>
 
@@ -220,11 +220,11 @@ const styles = StyleSheet.create({
    width: '100%',
  },
   buttonContainer: {
+    position: 'relative',
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingHorizontal: 20,
-    marginTop: -150,
-    width: '100%',
+    marginTop: -90,
     height: 50,
   },
   titleCategorie: {
@@ -277,11 +277,7 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: 700,
   },
-  spaceView: {
-    marginTop: 130,
-  },
   carouselContainerHeader:{
     left: 0,
   }
-  
 });
