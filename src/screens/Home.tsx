@@ -151,6 +151,7 @@ export default function() {
                 text="Wishlist"
                 iconName={faHeart}
                 color="#333"
+                width={170}
                 onPress={(event: GestureResponderEvent) => {
                   throw new Error('Function not implemented.');
                 }}
@@ -161,6 +162,7 @@ export default function() {
               <Button
                 text="Details"
                 color="#FFC107"
+                width={170}
                 onPress={(event: GestureResponderEvent) => {
                   throw new Error('Function not implemented.');
                 }}

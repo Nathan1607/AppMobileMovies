@@ -71,20 +71,21 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 5,
-    paddingLeft: 0,
   },
   button: {
     borderRadius: 20,
     marginHorizontal: 5,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     paddingVertical: 10,
     backgroundColor: 'transparent',
   },
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 13,
+    textAlign: 'center',
   },
   selectedButton: {
     backgroundColor: '#fff',
