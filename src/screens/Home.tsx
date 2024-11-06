@@ -15,12 +15,11 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
 import LinearGradient from 'react-native-linear-gradient';
+import { TOKEN_API } from '@env';
 
 const {width: screenWidth} = Dimensions.get('window');
 
-export default () => {
-  const token =
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
+export default function() {
 
   interface Movie {
     vote_average: number;
@@ -48,7 +47,7 @@ export default () => {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + token,
+              Authorization: 'Bearer ' + TOKEN_API,
             },
           },
         );
@@ -70,7 +69,7 @@ export default () => {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + token,
+              Authorization: 'Bearer ' + TOKEN_API,
             },
           },
         );
@@ -141,7 +140,7 @@ export default () => {
           </ScrollView>
 
           <View style={styles.indicatorContainer}>
-            {moviesCarousel.map((_, index) => (
+            {moviesCarousel.map((_, index) => ( 
               <View
                 key={index}
                 style={[
@@ -329,7 +328,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 250,
+    height: 300,
   },
   buttonContainer: {
     flexDirection: 'row',
