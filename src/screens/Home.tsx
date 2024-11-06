@@ -37,12 +37,20 @@ export default function() {
   const [moviesCarousel, setMoviesCarousel] = useState<Movie[]>([]);
   const scrollViewRef = useRef<ScrollView>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [categoryId, setCategoryId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/movie/popular?page=1',
+        let url = 'https://api.themoviedb.org/3/movie/popular?page=1';
+
+        console.log('CATEGORY ID', categoryId);
+        if (categoryId !== null && categoryId !== 0) {
+          url = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&page=1`;
+        }
+        
+        console.log('URL', url);
+        const response = await fetch( url,
           {
             method: 'GET',
             headers: {
@@ -63,8 +71,14 @@ export default function() {
 
     const fetchTvList = async () => {
       try {
+
+        let url = 'https://api.themoviedb.org/3/tv/popular?page=1';
+        if (categoryId !== null && categoryId !== 0) {
+          url = `https://api.themoviedb.org/3/discover/tv?with_genres=${categoryId}&page=1`;
+        }
+
         const response = await fetch(
-          'https://api.themoviedb.org/3/tv/popular?page=1',
+          url,
           {
             method: 'GET',
             headers: {
@@ -84,7 +98,7 @@ export default function() {
 
     fetchMovies();
     fetchTvList();
-  }, []);
+  }, [categoryId]);
 
   useEffect(() => {
     let scrollPosition = 0;
@@ -113,7 +127,7 @@ export default function() {
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           <View style={styles.barCategoryContainer}>
-            <BarCategory />
+            <BarCategory onCategoryChange={setCategoryId} />
           </View>
 
           <ScrollView
