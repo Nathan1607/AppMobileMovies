@@ -14,9 +14,10 @@ import Button from '../components/Button';
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {width: screenWidth} = Dimensions.get('window');
- 
+
 export default () => {
   const token =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODZhOGEwOWJiZmU2MWUwNjIxNWUzMmQyMDllYzE5YyIsIm5iZiI6MTcyODk3ODU0Ni4xNzE1MTUsInN1YiI6IjY3MGE5N2MwMzdkODZkNTIwYmIwODQ2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.49O9dbuRFT3Q32zn15USk97k9AMplfp0d0YwIi5TG18';
@@ -34,6 +35,7 @@ export default () => {
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [tvLists, setTvLists] = useState<TvList[]>([]);
+  const [moviesCarousel, setMoviesCarousel] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -51,6 +53,7 @@ export default () => {
         if (response.ok) {
           const data = await response.json();
           setMovies(data.results.slice(0, 10));
+          setMoviesCarousel(data.results.slice(0, 5));
         }
       } catch (error) {
         console.error('Error:', error);
@@ -95,34 +98,44 @@ export default () => {
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             style={styles.carouselContainerHeader}>
-            {movies.map((movie, index) => (
+            {moviesCarousel.map((movie, index) => (
               <Image
                 key={index}
                 source={{
-                    uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                  uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
                 }}
                 style={styles.headerCarouselImage}
                 resizeMode="contain"
               />
             ))}
+            <LinearGradient
+              colors={['transparent', 'rgba(0, 0, 0, 0.8)']}
+              style={styles.gradientOverlay}
+            />
           </ScrollView>
 
           <View style={styles.buttonContainer}>
-            <Button
-              text="Wishlist"
-              iconName={faHeart}
-              color="#333"
-              onPress={function (event: GestureResponderEvent): void {
-                throw new Error('Function not implemented.');
-              }}
-            />
-            <Button
-              text="Details"
-              color="#FFC107"
-              onPress={function (event: GestureResponderEvent): void {
-                throw new Error('Function not implemented.');
-              }}
-            />
+            <View style={styles.textButtonSection}>
+              <Text style={styles.sectionTitle}>My List</Text>
+              <Button
+                text="Wishlist"
+                iconName={faHeart}
+                color="#333"
+                onPress={(event: GestureResponderEvent) => {
+                  throw new Error('Function not implemented.');
+                }}
+              />
+            </View>
+            <View style={styles.textButtonSection}>
+              <Text style={styles.sectionTitle}>Discover</Text>
+              <Button
+                text="Details"
+                color="#FFC107"
+                onPress={(event: GestureResponderEvent) => {
+                  throw new Error('Function not implemented.');
+                }}
+              />
+            </View>
           </View>
 
           <View>
@@ -213,19 +226,11 @@ const styles = StyleSheet.create({
     width: '100%',
     zIndex: 1,
   },
- grayBackground: {
-   top: -100,
-   backgroundColor: '#808080',
-   height: 350,
-   width: '100%',
- },
-  buttonContainer: {
-    position: 'relative',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 20,
-    marginTop: -90,
-    height: 50,
+  grayBackground: {
+    top: -100,
+    backgroundColor: '#808080',
+    height: 350,
+    width: '100%',
   },
   titleCategorie: {
     color: 'white',
@@ -276,8 +281,33 @@ const styles = StyleSheet.create({
   headerCarouselImage: {
     width: screenWidth,
     height: 700,
+    marginTop: -40,
   },
-  carouselContainerHeader:{
+  carouselContainerHeader: {
     left: 0,
-  }
+  },
+  gradientOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 250,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginTop: -120,
+    height: 100,
+  },
+  textButtonSection: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  sectionTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
 });
