@@ -39,65 +39,44 @@ export default function() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [categoryId, setCategoryId] = useState<number | null>(null);
 
+  const fetchData = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + TOKEN_API,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data.results;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    return [];
+  };
+
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        let url = 'https://api.themoviedb.org/3/movie/popular?page=1';
+    const fetchMoviesAndTv = async () => {
+      let movieUrl = 'https://api.themoviedb.org/3/movie/popular?page=1';
+      let tvUrl = 'https://api.themoviedb.org/3/tv/popular?page=1';
 
-        console.log('CATEGORY ID', categoryId);
-        if (categoryId !== null && categoryId !== 0) {
-          url = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&page=1`;
-        }
-        
-        console.log('URL', url);
-        const response = await fetch( url,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + TOKEN_API,
-            },
-          },
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setMovies(data.results.slice(0, 10));
-          setMoviesCarousel(data.results.slice(0, 5));
-        }
-      } catch (error) {
-        console.error('Error:', error);
+      if (categoryId !== null && categoryId !== 0) {
+        movieUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${categoryId}&page=1`;
+        tvUrl = `https://api.themoviedb.org/3/discover/tv?with_genres=${categoryId}&page=1`;
       }
+
+      const movieResults = await fetchData(movieUrl);
+      const tvResults = await fetchData(tvUrl);
+
+      setMovies(movieResults.slice(0, 10));
+      setMoviesCarousel(movieResults.slice(0, 5));
+      setTvLists(tvResults.slice(0, 10));
     };
 
-    const fetchTvList = async () => {
-      try {
-
-        let url = 'https://api.themoviedb.org/3/tv/popular?page=1';
-        if (categoryId !== null && categoryId !== 0) {
-          url = `https://api.themoviedb.org/3/discover/tv?with_genres=${categoryId}&page=1`;
-        }
-
-        const response = await fetch(
-          url,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + TOKEN_API,
-            },
-          },
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setTvLists(data.results.slice(0, 10));
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchMovies();
-    fetchTvList();
+    fetchMoviesAndTv();
   }, [categoryId]);
 
   useEffect(() => {
