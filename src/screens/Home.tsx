@@ -6,7 +6,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
@@ -36,6 +36,8 @@ export default () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [tvLists, setTvLists] = useState<TvList[]>([]);
   const [moviesCarousel, setMoviesCarousel] = useState<Movie[]>([]);
+  const scrollViewRef = useRef<ScrollView>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -85,6 +87,28 @@ export default () => {
     fetchTvList();
   }, []);
 
+  useEffect(() => {
+    let scrollPosition = 0;
+
+    const interval = setInterval(() => {
+      if (scrollViewRef.current) {
+        scrollPosition += screenWidth;
+        if (scrollPosition >= screenWidth * moviesCarousel.length) {
+          scrollPosition = 0;
+        }
+        scrollViewRef.current.scrollTo({x: scrollPosition, animated: true});
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [moviesCarousel]);
+
+  const handleScroll = (event: any) => {
+    const offsetX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(offsetX / screenWidth);
+    setCurrentIndex(index);
+  };
+
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
@@ -94,8 +118,10 @@ export default () => {
           </View>
 
           <ScrollView
+            ref={scrollViewRef}
             horizontal
             pagingEnabled
+            onScroll={handleScroll}
             showsHorizontalScrollIndicator={false}
             style={styles.carouselContainerHeader}>
             {moviesCarousel.map((movie, index) => (
@@ -113,6 +139,18 @@ export default () => {
               style={styles.gradientOverlay}
             />
           </ScrollView>
+
+          <View style={styles.indicatorContainer}>
+            {moviesCarousel.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.indicator,
+                  currentIndex === index ? styles.activeIndicator : null,
+                ]}
+              />
+            ))}
+          </View>
 
           <View style={styles.buttonContainer}>
             <View style={styles.textButtonSection}>
@@ -309,5 +347,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  indicatorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  indicator: {
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    backgroundColor: '#888',
+    marginHorizontal: 5,
+  },
+  activeIndicator: {
+    backgroundColor: '#fff',
   },
 });
