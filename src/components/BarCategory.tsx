@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollViewWrapper: {
-    width: '90%',
+    width: '77%',
     backgroundColor: '#333333',
     borderRadius: 20,
     overflow: 'hidden',
@@ -72,11 +72,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 5,
   },
   button: {
     borderRadius: 20,
-    marginHorizontal: 5,
     paddingHorizontal: 10,
     paddingVertical: 10,
     backgroundColor: 'transparent',
