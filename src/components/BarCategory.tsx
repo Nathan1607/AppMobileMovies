@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 15,
     backgroundColor: 'transparent',
   },
   buttonText: {
