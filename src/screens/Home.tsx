@@ -11,7 +11,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import BarCategory from '../components/BarCategory';
 import {GestureHandlerRootView, ScrollView} from 'react-native-gesture-handler';
 import Button from '../components/Button';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
 import LinearGradient from 'react-native-linear-gradient';
@@ -149,7 +149,7 @@ export default function() {
               <Text style={styles.sectionTitle}>My List</Text>
               <Button
                 text="Wishlist"
-                iconName={faHeart}
+                iconName={faPlus}
                 color="#333"
                 width={170}
                 onPress={(event: GestureResponderEvent) => {
