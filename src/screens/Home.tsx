@@ -152,10 +152,9 @@ export default function() {
                 text="Wishlist"
                 iconName={faPlus}
                 color="#333"
+                textColor='#fff'
                 width={170}
-                onPress={(event: GestureResponderEvent) => {
-                  throw new Error('Function not implemented.');
-                }}
+                onPress={() => {}}
               />
             </View>
             <View style={[styles.textButtonSection, { alignItems: 'flex-start' }]}>
@@ -164,9 +163,8 @@ export default function() {
                 text="Details"
                 color="#FFC107"
                 width={170}
-                onPress={(event: GestureResponderEvent) => {
-                  throw new Error('Function not implemented.');
-                }}
+                textColor='#000'
+                onPress={() => {}}
               />
             </View>
           </View>
@@ -184,7 +182,7 @@ export default function() {
                   key={index}
                   title={tvList.name}
                   imageUrl={`https://image.tmdb.org/t/p/w500${tvList.poster_path}`}
-                  onPress={() => console.log(`${tvList.name} selected`)}
+                  onPress={() => {}}
                   style={[
                     index === tvLists.length - 1 ? {marginRight: 30} : null,
                   ]}
@@ -207,7 +205,7 @@ export default function() {
                   title={movie.title}
                   imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   rating={movie.vote_average}
-                  onPress={() => console.log(`${movie.title} selected`)}
+                  onPress={() => {}}
                   style={[
                     index === tvLists.length - 1 ? {marginRight: 30} : null,
                   ]}
@@ -231,12 +229,10 @@ export default function() {
               color="#FFC107"
               fontSize={18}
               width="85%"
-              textColor="black"
+              textColor="#000"
               marginLeft={30}
               marginTop={15}
-              onPress={function (event: GestureResponderEvent): void {
-                throw new Error('Function not implemented.');
-              }}
+              onPress={() => {}}
             />
           </View>
         </ScrollView>
