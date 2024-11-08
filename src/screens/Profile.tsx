@@ -7,7 +7,6 @@ import { useAuth } from '../providers/AuthContext';
 
 export default () => {
     
-    const navigation = useNavigation();
     const { logout } = useAuth();
 
     const handleLogout= () => {

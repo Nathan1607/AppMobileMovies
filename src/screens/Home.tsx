@@ -1,5 +1,4 @@
 import {
-  GestureResponderEvent,
   Image,
   StyleSheet,
   Text,
@@ -16,6 +15,11 @@ import MovieCardSimple from '../components/MovieCardSimple';
 import MovieCardDetail from '../components/MovieCardDetail';
 import LinearGradient from 'react-native-linear-gradient';
 import { TOKEN_API } from '@env';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  'Warning: TextElement: Support for defaultProps will be removed from function components', 
+]);
 
 const {width: screenWidth} = Dimensions.get('window');
 

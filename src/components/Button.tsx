@@ -1,5 +1,4 @@
 import {
-  GestureResponderEvent,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,7 +12,7 @@ interface ButtonProps {
   text: string;
   iconName?: IconProp;
   color: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress: () => void;
   fontSize?: number;
   textColor?: string;
   width?: number | string;
