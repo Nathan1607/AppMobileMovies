@@ -143,10 +143,11 @@ export default function() {
               />
             ))}
           </View>
+          <View style={{ width: 20 }} />
 
           <View style={styles.buttonContainer}>
-            <View style={styles.textButtonSection}>
-              <Text style={styles.sectionTitle}>My List</Text>
+          <View style={[styles.textButtonSection, { alignItems: 'flex-end', marginRight: 10 }]}>
+          <Text style={styles.sectionTitle}>My List</Text>
               <Button
                 text="Wishlist"
                 iconName={faPlus}
@@ -157,8 +158,8 @@ export default function() {
                 }}
               />
             </View>
-            <View style={styles.textButtonSection}>
-              <Text style={styles.sectionTitle}>Discover</Text>
+            <View style={[styles.textButtonSection, { alignItems: 'flex-start' }]}>
+            <Text style={styles.sectionTitle}>Discover</Text>
               <Button
                 text="Details"
                 color="#FFC107"
@@ -267,7 +268,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   link: {
-    color: 'yellow',
+    color: '#FFC107',
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'right',

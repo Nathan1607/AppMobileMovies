@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logoutButton: {
-        backgroundColor: '#FF3B30',
+        backgroundColor: '#FFC107',
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
         marginTop: 30,
     },
     logoutButtonText: {
-        color: '#fff',
+        color: '#000',
         fontSize: 16,
         fontWeight: 'bold',
     },

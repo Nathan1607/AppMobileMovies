@@ -12,24 +12,32 @@ const Tab = createBottomTabNavigator();
 
 const AppRoutes = () => {
   return (
-    <Tab.Navigator screenOptions={({ route }) => ({
-      headerShown: false,
-      tabBarIcon: ({ color, size}) => {
-        let iconName: IconDefinition = faHome;
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#000',
+          borderTopWidth: 0,
+        },
+        tabBarActiveTintColor: '#FFC107',
+        tabBarInactiveTintColor: '#fff',
+        tabBarIcon: ({ color, size }) => {
+          let iconName: IconDefinition = faHome;
 
-        if( route.name === 'Home') {
-          iconName = faHome;
-        } else if (route.name === 'Search') {
-          iconName = faSearch;
-        } else if (route.name === 'Wishlist') {
-          iconName = faHeart;
-        } else if (route.name === 'Profile') {
-          iconName = faUser;
-        }
+          if (route.name === 'Home') {
+            iconName = faHome;
+          } else if (route.name === 'Search') {
+            iconName = faSearch;
+          } else if (route.name === 'Wishlist') {
+            iconName = faHeart;
+          } else if (route.name === 'Profile') {
+            iconName = faUser;
+          }
 
-        return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
-      },
-    })}>
+          return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
+        },
+      })}
+    >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Wishlist" component={Wishlist} />
