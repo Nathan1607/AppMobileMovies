@@ -1,5 +1,3 @@
-// Button.tsx
-
 import {
   GestureResponderEvent,
   StyleSheet,
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     height: 50,
   },
   buttonContent: {

@@ -230,7 +230,7 @@ export default function() {
               color="#FFC107"
               fontSize={18}
               width="85%"
-              textColor="#fff"
+              textColor="black"
               marginLeft={30}
               marginTop={15}
               onPress={function (event: GestureResponderEvent): void {
@@ -257,12 +257,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     zIndex: 1,
-  },
-  grayBackground: {
-    top: -100,
-    backgroundColor: '#808080',
-    height: 350,
-    width: '100%',
   },
   titleCategorie: {
     color: 'white',
