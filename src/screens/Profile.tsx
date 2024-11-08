@@ -2,7 +2,6 @@ import { ActivityIndicator, SafeAreaView, StyleSheet, TouchableOpacity, View } f
 import React from "react";
 import { Text } from "react-native-elements";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 import { useAuth } from '../providers/AuthContext';
 
 export default () => {
