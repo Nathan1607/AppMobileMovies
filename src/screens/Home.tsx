@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   headerCarouselImage: {
     width: screenWidth,
-    height: 700,
+    height: 560,
     marginTop: -40,
   },
   carouselContainerHeader: {
@@ -329,6 +329,7 @@ const styles = StyleSheet.create({
   textButtonSection: {
     alignItems: 'center',
     flex: 1,
+    marginTop: 10,
   },
   sectionTitle: {
     color: 'white',
